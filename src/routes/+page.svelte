@@ -19,13 +19,17 @@
 	};
 
 	onMount(() => {
-		window.addEventListener('beforeprint', handleBeforePrint);
-		window.addEventListener('afterprint', handleAfterPrint);
+		if (typeof window !== 'undefined') {
+			window.addEventListener('beforeprint', handleBeforePrint);
+			window.addEventListener('afterprint', handleAfterPrint);
+		}
 	});
 
 	onDestroy(() => {
-		window.removeEventListener('beforeprint', handleBeforePrint);
-		window.removeEventListener('afterprint', handleAfterPrint);
+		if (typeof window !== 'undefined') {
+			window.removeEventListener('beforeprint', handleBeforePrint);
+			window.removeEventListener('afterprint', handleAfterPrint);
+		}
 	});
 
 	let topicName = 'Smart Start Grade 5 - Theme 8';
