@@ -40,4 +40,4 @@
 	}
 </script>
 
-<button on:click={handleScramble}>Scramble</button>
+<button on:click={handleScramble}>Scramble Order</button>

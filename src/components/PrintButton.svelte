@@ -3,6 +3,4 @@
 
 </script>
 
-<!-- {#if !hideElement} -->
-	<button on:click={handleClickPrint}>Print</button>
-<!-- {/if} -->
+	<button on:click={handleClickPrint}>Printer Friendly</button>
