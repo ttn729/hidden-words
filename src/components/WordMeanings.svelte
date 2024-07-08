@@ -55,8 +55,12 @@
 
 	.wordMeaningsContainer textarea {
         width: 40vw; /* Adjust this value as needed */
-        padding: 8px; /* Optional: Add padding for better appearance */
+        padding: 1vw; /* Optional: Add padding for better appearance */
         box-sizing: border-box; /* Ensure padding is included in the width */
 		overflow-y: auto; 
     }
+
+	h1 {
+		text-align: center;
+	}
 </style>

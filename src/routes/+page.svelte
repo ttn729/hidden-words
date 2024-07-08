@@ -60,6 +60,7 @@
 {#if !hideElement}
 	<PrintButton {handleClickPrint} />
 	<ScrambleButton {words} {meanings} {updateWords} {updateMeanings} />
+	<button>Hide Words</button>
 {/if}
 
 {#if !printMode}

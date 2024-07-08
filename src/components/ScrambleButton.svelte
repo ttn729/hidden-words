@@ -31,12 +31,9 @@
 	}
 
 	function handleScramble() {
-        console.log('clicked scramble')
         shuffleArray()
         updateWords(wordsArray.join('\n'));
         updateMeanings(meaningsArray.join('\n'));
-
-        console.log(meanings)
 	}
 </script>
 

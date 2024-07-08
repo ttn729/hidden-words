@@ -48,31 +48,40 @@
 		</tbody>
 	</table>
 </div>
+
 <style>
-	/* Optional: Add some basic styling */
-	.wordMeaningsTable {
-		margin: 20px;
-	}
+    .wordMeaningsTable {
+        margin: 1vw;
+    }
 
-	table {
-		width: 100%;
-		border-collapse: collapse;
-	}
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #3c3c3c; /* Solid border for the table */
+    }
 
-	th,
-	td {
-		border: 1px solid #ddd;
-		padding: 8px;
-		text-align: left;
-	}
+    th,
+    td {
+        padding: 1vw;
+        text-align: left;
+        border-bottom: 1px dashed #3c3c3c; /* Dashed border for cell bottom */
+        border-top: 1px dashed #3c3c3c; /* Dashed border for cell top */
+        position: relative; /* Ensure position relative for pseudo-element positioning */
+    }
 
-	th {
-		text-align: center;
-	}
+    th {
+        text-align: center;
+        border: 1px solid #3c3c3c; /* Solid border for table headers */
+    }
 
-	/* Set equal width for Word and Meaning columns */
-	td:nth-child(2),
-	td:nth-child(3) {
-		width: 200px;
-	}
+    td:nth-child(2),
+    td:nth-child(3) {
+        width: 40vw;
+        border-left: 1px dashed #3c3c3c; /* Dashed vertical border between columns */
+    }
+
+    /* Optional: Remove bottom border from last row */
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
 </style>
