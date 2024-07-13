@@ -32,12 +32,16 @@
 		}
 	});
 
-	let topicName = 'Smart Start Grade 5 - Theme 8';
-	let words = 'Reporter\nHospital\nSecurity guard\nAunt\nWork with animals\nDraw\nMake cakes\nTV station\nFirefighter\nOutdoors\nPaint\nBaker\nWear a uniform\nCousin\nZookeeper\nAnimation\nFarmer\nEngineer\nFamous\nCashier\nMechanic\nHotel\nPolice officer\nUncle\nChef\nVehicle\nNewspaper\nAnimator\nUse a vehicle\nWriter\nIndoors\nHelp people\nReceptionist\nBookstore\nUniform\nSupermarket\nUse a computer\nWork\nRestaurant\nVet\nWork indoors\nRich\nArtist\nWork outdoors\nDentist\nGrow up\nCook\nWrite';
-	let meanings =
-		'phóng viên nhà báo\nbệnh viện\nnhân viên an ninh, bảo vệ\ndì, cô\nlàm việc với động vật\nvẽ\nlàm bánh\nđài truyền hình\nlính cứu hỏa\nngoài trời\ntô vẽ\nthợ làm bánh\nmặc một bộ đồng phục\nanh/chị/em họ\nngười trông coi sở thú\nhoạt hình đồ họa\nnông dân\nkỹ sư\nnổi tiếng\nthu ngân, nhân viên thu tiền\nthợ cơ khí\nkhách sạn\ncảnh sát\nchú, bác, cậu\nđầu bếp\nphương tiện giao thông, xe cộ\nbáo chí\nnhà thiết kế hoạt hình\nsử dụng một phương tiện giao thông\nnhà văn, người viết\ntrong nhà\ngiúp đỡ mọi người\nnhân viên tiếp tân\ntiệm sách\nbộ đồng phục\nsiêu thị\nsử dụng một cái máy vi tính\ncông việc, làm việc\nnhà hàng, quán ăn\nbác sĩ thú y\nlàm việc trong nhà\ngiàu\nhọa sĩ, nghệ sĩ\nlàm việc ngoài trời\nnha sĩ\nlớn lên, trưởng thành\nnấu ăn\nviết';
+	let topicName = '';
+	let words = '';
+	let meanings = '';
+	let originalWords; // Keep a copy of the original words
+	let originalMeanings; // Keep a copy of the original words
 
+	let percentHideWords;
 	let printMode = false;
+	let clickedToggleHide = false;
+
 	function handleClickPrint() {
 		printMode = !printMode;
 	}
@@ -55,17 +59,80 @@
 	function updateMeanings(newMeanings) {
 		meanings = newMeanings;
 	}
+
+	/**
+	 * @param {string} newTopicName
+	 */
+	function updateTopicName(newTopicName) {
+		topicName = newTopicName;
+	}
+
+	function toggleWords() {
+		if (!clickedToggleHide) {
+			// Original words are still intact, so call hideWords
+			originalWords = words;
+			originalMeanings = meanings;
+			hideWords();
+		} else {
+			// Restore original words
+			words = originalWords;
+			meanings = originalMeanings;
+		}
+		clickedToggleHide = !clickedToggleHide
+	}
+
+	function hideWords() {
+		let wordsArray = words.split('\n');
+		let meaningsArray = meanings.split('\n');
+
+		let manipulatedWords = [];
+		let manipulatedMeanings = [];
+
+		const n = wordsArray.length;
+
+		// Determine how many words to make empty
+		const numToMakeEmpty = Number.isInteger(percentHideWords) ? Math.floor(percentHideWords / 100 * n) : .8 * n 
+
+		// Create an array to store indices of words to make empty
+		let emptyIndices = [];
+
+		// Randomly select indices to make empty
+		while (emptyIndices.length < numToMakeEmpty) {
+			const randomIndex = Math.floor(Math.random() * n);
+			if (!emptyIndices.includes(randomIndex)) {
+				emptyIndices.push(randomIndex);
+			}
+		}
+
+		// Initialize result arrays
+		console.log(meaningsArray[0])
+
+		// Iterate through each word and its corresponding meaning
+		for (let i = 0; i < n; i++) {
+			if (emptyIndices.includes(i)) {
+				manipulatedWords.push('');
+				manipulatedMeanings.push(meaningsArray[i]);
+			} else {
+				manipulatedWords.push(wordsArray[i]);
+				manipulatedMeanings.push('');
+			}
+		}
+
+		updateWords(manipulatedWords.join('\n'));
+		updateMeanings(manipulatedMeanings.join('\n'));
+	}
 </script>
 
 {#if !hideElement}
 	<PrintButton {handleClickPrint} />
 	<ScrambleButton {words} {meanings} {updateWords} {updateMeanings} />
-	<button>Hide Words</button>
+	<button on:click={toggleWords}>Hide Words</button>
+	<input type='number' min='0' max="100" placeholder="0-100%" bind:value={percentHideWords}/>
 {/if}
 
 {#if !printMode}
 	<NameClass />
-	<TopicTitle {topicName} />
+	<TopicTitle {topicName} {updateTopicName} />
 	<WordMeanings {words} {meanings} {updateWords} {updateMeanings} />
 {:else}
 	<NameClass />

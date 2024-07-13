@@ -11,12 +11,11 @@
 	/**
 	 * @type {(arg0: any) => void}
 	 */
-	 export let updateWords;
+	export let updateWords;
 	/**
 	 * @type {(arg0: any) => void}
 	 */
-	 export let updateMeanings;
-
+	export let updateMeanings;
 
 	/**
 	 * @param {{ target: any }} event
@@ -25,7 +24,7 @@
 		updateWords(event.target.value);
 	}
 
-    	/**
+	/**
 	 * @param {{ target: any }} event
 	 */
 	function handleMeaningsChange(event) {
@@ -38,11 +37,21 @@
 <div class="wordMeaningsContainer">
 	<div>
 		<h1>Words</h1>
-		<textarea bind:value={words} on:input={handleWordsChange} rows={numRows}/>
+		<textarea
+			bind:value={words}
+			on:input={handleWordsChange}
+			rows={numRows}
+			placeholder="Input the words"
+		/>
 	</div>
 	<div>
 		<h1>Meanings</h1>
-		<textarea bind:value={meanings} on:input={handleMeaningsChange} rows={numRows} />
+		<textarea
+			bind:value={meanings}
+			on:input={handleMeaningsChange}
+			rows={numRows}
+			placeholder="Input the meanings"
+		/>
 	</div>
 </div>
 
@@ -54,11 +63,11 @@
 	}
 
 	.wordMeaningsContainer textarea {
-        width: 40vw; /* Adjust this value as needed */
-        padding: 1vw; /* Optional: Add padding for better appearance */
-        box-sizing: border-box; /* Ensure padding is included in the width */
-		overflow-y: auto; 
-    }
+		width: 40vw; /* Adjust this value as needed */
+		padding: 1vw; /* Optional: Add padding for better appearance */
+		box-sizing: border-box; /* Ensure padding is included in the width */
+		overflow-y: auto;
+	}
 
 	h1 {
 		text-align: center;
