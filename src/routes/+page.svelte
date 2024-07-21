@@ -1,5 +1,6 @@
 <script>
-	import NameClass from '../components/NameClass.svelte';
+	import BottomLines from '../components/BottomLines.svelte';
+import NameClass from '../components/NameClass.svelte';
 	import PrintButton from '../components/PrintButton.svelte';
 	import ScrambleButton from '../components/ScrambleButton.svelte';
 	import TopicTitle from '../components/TopicTitle.svelte';
@@ -39,6 +40,8 @@
 	let originalMeanings; // Keep a copy of the original words
 
 	let percentHideWords;
+	let numLinesAdded;
+
 	let printMode = false;
 	let clickedToggleHide = false;
 
@@ -104,9 +107,6 @@
 			}
 		}
 
-		// Initialize result arrays
-		console.log(meaningsArray[0])
-
 		// Iterate through each word and its corresponding meaning
 		for (let i = 0; i < n; i++) {
 			if (emptyIndices.includes(i)) {
@@ -128,13 +128,14 @@
 	<ScrambleButton {words} {meanings} {updateWords} {updateMeanings} />
 	<button on:click={toggleWords}>Hide Words</button>
 	<input type='number' min='0' max="100" placeholder="0-100%" bind:value={percentHideWords}/>
+	<input type='number' min='0' max="100" placeholder="# Lines" bind:value={numLinesAdded}/>
 {/if}
 
 {#if !printMode}
-	<NameClass />
 	<TopicTitle {topicName} {updateTopicName} />
 	<WordMeanings {words} {meanings} {updateWords} {updateMeanings} />
 {:else}
 	<NameClass />
 	<WordMeaningsTable {words} {meanings} {topicName} />
+	<BottomLines {numLinesAdded} />
 {/if}

@@ -29,9 +29,11 @@
 	div {
 		display: flex;
 		justify-content: center;
+		margin-top: 1vw;
 	}
 
 	input {
-		width: 100%;
+		width: 80%;
+		font-size: x-large;
 	}
 </style>
