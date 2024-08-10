@@ -62,7 +62,8 @@
 
     th,
     td {
-        padding: 1vw;
+        padding-left: 1vw;
+		padding-right: 1vw;
         text-align: left;
         border-bottom: 1px dashed #3c3c3c; /* Dashed border for cell bottom */
         border-top: 1px dashed #3c3c3c; /* Dashed border for cell top */
@@ -84,4 +85,9 @@
     tbody tr:last-child td {
         border-bottom: none;
     }
+
+  .wordMeaningsTable tbody td ,
+  .wordMeaningsTable th {
+    font-size: 2em; /* Adjust this value as needed */
+  }
 </style>
