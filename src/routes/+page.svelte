@@ -1,6 +1,6 @@
-<script>
+<script lang='ts'>
 	import BottomLines from '../components/BottomLines.svelte';
-import NameClass from '../components/NameClass.svelte';
+	import NameClass from '../components/NameClass.svelte';
 	import PrintButton from '../components/PrintButton.svelte';
 	import ScrambleButton from '../components/ScrambleButton.svelte';
 	import TopicTitle from '../components/TopicTitle.svelte';
@@ -36,11 +36,11 @@ import NameClass from '../components/NameClass.svelte';
 	let topicName = '';
 	let words = '';
 	let meanings = '';
-	let originalWords; // Keep a copy of the original words
-	let originalMeanings; // Keep a copy of the original words
+	let originalWords: string; // Keep a copy of the original words
+	let originalMeanings: string; // Keep a copy of the original words
 
-	let percentHideWords;
-	let numLinesAdded;
+	let percentHideWords: number;
+	let numLinesAdded: number;
 
 	let printMode = false;
 	let clickedToggleHide = false;
@@ -49,24 +49,15 @@ import NameClass from '../components/NameClass.svelte';
 		printMode = !printMode;
 	}
 
-	/**
-	 * @param {string} newWords
-	 */
-	function updateWords(newWords) {
+	function updateWords(newWords: string) {
 		words = newWords;
 	}
 
-	/**
-	 * @param {string} newMeanings
-	 */
-	function updateMeanings(newMeanings) {
+	function updateMeanings(newMeanings: string) {
 		meanings = newMeanings;
 	}
 
-	/**
-	 * @param {string} newTopicName
-	 */
-	function updateTopicName(newTopicName) {
+	function updateTopicName(newTopicName: string) {
 		topicName = newTopicName;
 	}
 
@@ -81,7 +72,7 @@ import NameClass from '../components/NameClass.svelte';
 			words = originalWords;
 			meanings = originalMeanings;
 		}
-		clickedToggleHide = !clickedToggleHide
+		clickedToggleHide = !clickedToggleHide;
 	}
 
 	function hideWords() {
@@ -94,10 +85,12 @@ import NameClass from '../components/NameClass.svelte';
 		const n = wordsArray.length;
 
 		// Determine how many words to make empty
-		const numToMakeEmpty = Number.isInteger(percentHideWords) ? Math.floor(percentHideWords / 100 * n) : .8 * n 
+		const numToMakeEmpty = Number.isInteger(percentHideWords)
+			? Math.floor((percentHideWords / 100) * n)
+			: 0.8 * n;
 
 		// Create an array to store indices of words to make empty
-		let emptyIndices = [];
+		let emptyIndices: number[] = [];
 
 		// Randomly select indices to make empty
 		while (emptyIndices.length < numToMakeEmpty) {
@@ -127,8 +120,8 @@ import NameClass from '../components/NameClass.svelte';
 	<PrintButton {handleClickPrint} />
 	<ScrambleButton {words} {meanings} {updateWords} {updateMeanings} />
 	<button on:click={toggleWords}>Hide Words</button>
-	<input type='number' min='0' max="100" placeholder="0-100%" bind:value={percentHideWords}/>
-	<input type='number' min='0' max="100" placeholder="# Lines" bind:value={numLinesAdded}/>
+	<input type="number" min="0" max="100" placeholder="0-100%" bind:value={percentHideWords} />
+	<input type="number" min="0" max="100" placeholder="# Lines" bind:value={numLinesAdded} />
 {/if}
 
 {#if !printMode}

@@ -1,33 +1,15 @@
-<script>
-	/**
-	 * @type {string}
-	 */
-	export let words;
-	/**
-	 * @type {string}
-	 */
-	export let meanings;
+<script lang="ts">
 
-	/**
-	 * @type {(arg0: any) => void}
-	 */
-	export let updateWords;
-	/**
-	 * @type {(arg0: any) => void}
-	 */
-	export let updateMeanings;
+	export let words: string;
+	export let meanings: string;
+	export let updateWords: (arg0: any) => void;
+	export let updateMeanings: (arg0: any) => void;
 
-	/**
-	 * @param {{ target: any }} event
-	 */
-	function handleWordsChange(event) {
+	function handleWordsChange(event: { target: { value: any; }; }) {
 		updateWords(event.target.value);
 	}
 
-	/**
-	 * @param {{ target: any }} event
-	 */
-	function handleMeaningsChange(event) {
+	function handleMeaningsChange(event: { target: { value: any; }; }) {
 		updateMeanings(event.target.value);
 	}
 
@@ -39,19 +21,19 @@
 		<h1>Words</h1>
 		<textarea
 			bind:value={words}
-			on:input={handleWordsChange}
+			on:input={() => handleWordsChange}
 			rows={numRows}
 			placeholder="Input the words"
-		/>
+		></textarea>
 	</div>
 	<div>
 		<h1>Meanings</h1>
 		<textarea
 			bind:value={meanings}
-			on:input={handleMeaningsChange}
+			on:input={() => handleMeaningsChange}
 			rows={numRows}
 			placeholder="Input the meanings"
-		/>
+		></textarea>
 	</div>
 </div>
 

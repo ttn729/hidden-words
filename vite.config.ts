@@ -1,7 +1,7 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
 	plugins: [sveltekit()],
 	test: {
 		globals: true,
@@ -9,5 +9,8 @@ export default defineConfig({
 		include: ['src/**/*.{test,spec}.ts'],
 		// Extend jest-dom matchers
 		setupFiles: ['./setupTest.js']
-	}
-});
+	},
+	resolve: {
+		conditions: mode === 'test' ? ['browser'] : [],
+	},
+}));

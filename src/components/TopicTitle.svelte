@@ -1,17 +1,8 @@
-<script>
-	/**
-	 * @type {string}
-	 */
-	export let topicName;
-	/**
-	 * @type {(arg0: any) => void}
-	 */
-	export let updateTopicName;
+<script lang="ts">
+	export let topicName: string;
+	export let updateTopicName: (arg0: any) => void;
 
-    	/**
-	 * @param {{ target: any }} event
-	 */
-	function handleTopicNameChange(event) {
+	function handleTopicNameChange(event: { target: { value: any } }) {
 		updateTopicName(event.target.value);
 	}
 </script>
@@ -19,7 +10,7 @@
 <div>
 	<input
 		bind:value={topicName}
-		on:input={handleTopicNameChange}
+		on:input={() => handleTopicNameChange}
 		placeholder={'Type the topic title here'}
 		data-testId="titleInput"
 	/>

@@ -6,7 +6,7 @@ describe('print button', () => {
 	it('should render print button', async () => {
 		render(PrintButton)
 
-        const printButton = screen.getByRole('button', {name: 'Print'})
+		const printButton = screen.getByRole('button', { name: 'Printer Friendly' })
 
 		expect(printButton).toBeInTheDocument()
 	});

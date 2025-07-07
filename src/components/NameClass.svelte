@@ -1,5 +1,5 @@
 
-<script>
+<script lang="ts">
     let year = new Date().getFullYear()
 </script>
 

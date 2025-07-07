@@ -1,21 +1,9 @@
-<script>
-	/**
-	 * @type {string}
-	 */
-	export let words;
-	/**
-	 * @type {string}
-	 */
-	export let meanings;
+<script lang="ts">
 
-	/**
-	 * @type {(arg0: any) => void}
-	 */
-	export let updateWords;
-	/**
-	 * @type {(arg0: any) => void}
-	 */
-	export let updateMeanings;
+	export let words: string;
+	export let meanings: string;
+	export let updateWords: (arg0: any) => void;
+	export let updateMeanings: (arg0: any) => void;
 
 	$: wordsArray = words ? words.split('\n') : [];
 	$: meaningsArray = meanings ? meanings.split('\n') : [];

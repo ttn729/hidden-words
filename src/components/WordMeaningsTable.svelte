@@ -1,25 +1,20 @@
-<script>
+<script lang="ts">
 	export let words;
 	export let meanings;
 	export let topicName;
 
-    $: wordsArray = words ? words.split('\n') : [];
+	$: wordsArray = words ? words.split('\n') : [];
 	$: meaningsArray = meanings ? meanings.split('\n') : [];
 
-	/**
-	 * @param {number} length
-	 */
-	function generateIndicesArray(length) {
+	function generateIndicesArray(length: number) {
 		return Array.from({ length }, (_, i) => i + 1);
 	}
 
-    /**
-	 * @type {number[]}
-	 */
-    let indices = []
-    $: if (wordsArray && meaningsArray) {
-        indices = generateIndicesArray(Math.max(wordsArray.length, meaningsArray.length));
-    }</script>
+	let indices: number[] = [];
+	$: if (wordsArray && meaningsArray) {
+		indices = generateIndicesArray(Math.max(wordsArray.length, meaningsArray.length));
+	}
+</script>
 
 <div class="wordMeaningsTable">
 	<table>
@@ -50,44 +45,44 @@
 </div>
 
 <style>
-    .wordMeaningsTable {
-        margin: 1vw;
-    }
+	.wordMeaningsTable {
+		margin: 1vw;
+	}
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        border: 1px solid #3c3c3c; /* Solid border for the table */
-    }
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		border: 1px solid #3c3c3c; /* Solid border for the table */
+	}
 
-    th,
-    td {
-        padding-left: 1vw;
+	th,
+	td {
+		padding-left: 1vw;
 		padding-right: 1vw;
-        text-align: left;
-        border-bottom: 1px dashed #3c3c3c; /* Dashed border for cell bottom */
-        border-top: 1px dashed #3c3c3c; /* Dashed border for cell top */
-        position: relative; /* Ensure position relative for pseudo-element positioning */
-    }
+		text-align: left;
+		border-bottom: 1px dashed #3c3c3c; /* Dashed border for cell bottom */
+		border-top: 1px dashed #3c3c3c; /* Dashed border for cell top */
+		position: relative; /* Ensure position relative for pseudo-element positioning */
+	}
 
-    th {
-        text-align: center;
-        border: 1px solid #3c3c3c; /* Solid border for table headers */
-    }
+	th {
+		text-align: center;
+		border: 1px solid #3c3c3c; /* Solid border for table headers */
+	}
 
-    td:nth-child(2),
-    td:nth-child(3) {
-        width: 40vw;
-        border-left: 1px dashed #3c3c3c; /* Dashed vertical border between columns */
-    }
+	td:nth-child(2),
+	td:nth-child(3) {
+		width: 40vw;
+		border-left: 1px dashed #3c3c3c; /* Dashed vertical border between columns */
+	}
 
-    /* Optional: Remove bottom border from last row */
-    tbody tr:last-child td {
-        border-bottom: none;
-    }
+	/* Optional: Remove bottom border from last row */
+	tbody tr:last-child td {
+		border-bottom: none;
+	}
 
-  .wordMeaningsTable tbody td ,
-  .wordMeaningsTable th {
-    font-size: 2em; /* Adjust this value as needed */
-  }
+	.wordMeaningsTable tbody td,
+	.wordMeaningsTable th {
+		font-size: 2em; /* Adjust this value as needed */
+	}
 </style>
