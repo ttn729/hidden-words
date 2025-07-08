@@ -19,7 +19,7 @@
 		max="100"
 		placeholder="0-100%"
 		value={$store.percentHideWords}
-		oninput={(event) => store.setPercentHideWords(Number(event.target.value))}
+		oninput={(e) => store.setPercentHideWords(Number(e.target.value))}
 	/>
 	<input
 		type="number"
@@ -27,7 +27,7 @@
 		max="100"
 		placeholder="# Lines"
 		value={$store.numLines}
-		oninput={(event) => store.setNumLines(Number(event.target.value))}
+		oninput={(e) => store.setNumLines(Number(e.target.value))}
 	/>
 </div>
 

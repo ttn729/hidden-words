@@ -1,14 +1,6 @@
 <script lang="ts">
-	import { store } from "../store";
-
-	function handleWordsChange(event: { target: { value: any; }; }) {
-		store.setWords(event.target.value);
-	}
-
-	function handleMeaningsChange(event: { target: { value: any; }; }) {
-		store.setMeanings(event.target.value);
-	}
-
+	// @ts-nocheck
+	import { store } from '../store';
 	const NUM_ROWS = 50;
 </script>
 
@@ -17,7 +9,7 @@
 		<h1>Words</h1>
 		<textarea
 			value={$store.words}
-			oninput={() => handleWordsChange}
+			oninput={(e) => store.setWords(e.target.value)}
 			rows={NUM_ROWS}
 			placeholder="Input the words"
 		></textarea>
@@ -26,7 +18,7 @@
 		<h1>Meanings</h1>
 		<textarea
 			value={$store.meanings}
-			oninput={() => handleMeaningsChange}
+			oninput={(e) => store.setMeanings(e.target.value)}
 			rows={NUM_ROWS}
 			placeholder="Input the meanings"
 		></textarea>

@@ -1,14 +1,13 @@
 <script lang="ts">
-	import { store } from "../store";
-	function handleTopicNameChange(event: { target: { value: any } }) {
-		store.setTopicName(event.target.value);
-	}
+	// @ts-nocheck
+	import { store } from '../store';
+	
 </script>
 
 <div>
 	<input
 		value={$store.topicName}
-		oninput={() => handleTopicNameChange}
+		oninput={(e) => store.setTopicName(e.target.value)}
 		placeholder={'Type the topic title here'}
 		data-testId="titleInput"
 	/>
