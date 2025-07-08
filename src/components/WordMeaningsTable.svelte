@@ -1,10 +1,8 @@
 <script lang="ts">
-	export let words;
-	export let meanings;
-	export let topicName;
+    import { store } from "../store";
 
-	$: wordsArray = words ? words.split('\n') : [];
-	$: meaningsArray = meanings ? meanings.split('\n') : [];
+	$: wordsArray = $store.words ? $store.words.split('\n') : [];
+	$: meaningsArray = $store.meanings ? $store.meanings.split('\n') : [];
 
 	function generateIndicesArray(length: number) {
 		return Array.from({ length }, (_, i) => i + 1);
@@ -20,7 +18,7 @@
 	<table>
 		<thead>
 			<tr>
-				<th colspan="3" style="text-align: center;">{topicName || ''}</th>
+				<th colspan="3" style="text-align: center;">{$store.topicName}</th>
 			</tr>
 			<tr>
 				<th colspan="2" style="text-align: center;">Words</th>

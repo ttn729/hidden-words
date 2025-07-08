@@ -1,16 +1,14 @@
 <script lang="ts">
-	export let topicName: string;
-	export let updateTopicName: (arg0: any) => void;
-
+	import { store } from "../store";
 	function handleTopicNameChange(event: { target: { value: any } }) {
-		updateTopicName(event.target.value);
+		store.setTopicName(event.target.value);
 	}
 </script>
 
 <div>
 	<input
-		bind:value={topicName}
-		on:input={() => handleTopicNameChange}
+		value={$store.topicName}
+		oninput={() => handleTopicNameChange}
 		placeholder={'Type the topic title here'}
 		data-testId="titleInput"
 	/>

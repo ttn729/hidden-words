@@ -1,37 +1,33 @@
 <script lang="ts">
-
-	export let words: string;
-	export let meanings: string;
-	export let updateWords: (arg0: any) => void;
-	export let updateMeanings: (arg0: any) => void;
+	import { store } from "../store";
 
 	function handleWordsChange(event: { target: { value: any; }; }) {
-		updateWords(event.target.value);
+		store.setWords(event.target.value);
 	}
 
 	function handleMeaningsChange(event: { target: { value: any; }; }) {
-		updateMeanings(event.target.value);
+		store.setMeanings(event.target.value);
 	}
 
-	let numRows = 50;
+	const NUM_ROWS = 50;
 </script>
 
 <div class="wordMeaningsContainer">
 	<div>
 		<h1>Words</h1>
 		<textarea
-			bind:value={words}
-			on:input={() => handleWordsChange}
-			rows={numRows}
+			value={$store.words}
+			oninput={() => handleWordsChange}
+			rows={NUM_ROWS}
 			placeholder="Input the words"
 		></textarea>
 	</div>
 	<div>
 		<h1>Meanings</h1>
 		<textarea
-			bind:value={meanings}
-			on:input={() => handleMeaningsChange}
-			rows={numRows}
+			value={$store.meanings}
+			oninput={() => handleMeaningsChange}
+			rows={NUM_ROWS}
 			placeholder="Input the meanings"
 		></textarea>
 	</div>

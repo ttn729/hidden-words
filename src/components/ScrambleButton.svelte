@@ -1,12 +1,8 @@
 <script lang="ts">
+	import { store } from "../store";
 
-	export let words: string;
-	export let meanings: string;
-	export let updateWords: (arg0: any) => void;
-	export let updateMeanings: (arg0: any) => void;
-
-	$: wordsArray = words ? words.split('\n') : [];
-	$: meaningsArray = meanings ? meanings.split('\n') : [];
+	$: wordsArray = $store.words ? $store.words.split('\n') : [];
+	$: meaningsArray = $store.meanings ? $store.meanings.split('\n') : [];
 
 	function shuffleArray() {
 		for (let i = wordsArray.length - 1; i > 0; i--) {
@@ -20,9 +16,9 @@
 
 	function handleScramble() {
         shuffleArray()
-        updateWords(wordsArray.join('\n'));
-        updateMeanings(meaningsArray.join('\n'));
+        store.setWords(wordsArray.join('\n'));
+        store.setMeanings(meaningsArray.join('\n'));
 	}
 </script>
 
-<button on:click={handleScramble}>Scramble Order</button>
+<button onclick={handleScramble}>Scramble Order</button>
